@@ -1,34 +1,29 @@
 # dependencies
-/node_modules
-/.pnp
-.pnp.js
+node_modules/
 
-# testing
-/coverage
-
-design.md
-motion.md
-stitch_yanxin_zhang_portfolio/
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# local env files
-.env*.local
+# next.js build output
+.next/
+out/
+next-env.d.ts
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
+
+# env
+.env
+.env*.local
+
+# macOS cruft
+.DS_Store
+
+# editors
+.vscode/
+.idea/
+
+# NOTE on what is deliberately NOT ignored here.
+#
+# docs/   design spec, motion spec, build handoff, the editable CV source
+# tools/  the three 21st.dev userscripts used to capture reference components
+#
+# Both are inputs, not build output. The site's own assets live in public/ and
+# are meant to be committed -- there is nowhere else to serve them from.

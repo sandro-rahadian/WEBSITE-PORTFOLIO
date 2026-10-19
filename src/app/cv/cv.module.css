@@ -1,0 +1,290 @@
+/* [cv] A standalone document page, so it brings its own light palette and serif
+   rather than the site's dark tokens. Scoped to this module on purpose: the
+   crimson is scoped here too, so it does not become a third red moment in the
+   global system (design.md: "Merah tersisa 2 momen" — hero + wordmark footer). */
+.page {
+  --bg: #ffffff;
+  --ink: #1f1f1f;
+  --heading: #111111;
+  --ink-soft: #555555;
+  --muted: #8a8a8a;
+  --rule: #e6e6e6;
+  --accent: #b0185a;
+  --radius: 6px;
+  --max-w: 720px;
+
+  /* the reference sets html to 15px; scoping it to the page keeps every rem in
+     the original's scale without touching the rest of the site */
+  font-size: 15px;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-cv);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* [cv] Scroll runway around the 3D frame. The container itself is 92rem tall on
+   desktop, which is where the tilt gets its travel; this only adds breathing
+   room so the frame does not collide with the header above or the footer below. */
+.runway {
+  padding: 40px 0 0;
+}
+
+/* ---------- header ---------- */
+
+.header {
+  border-bottom: 1px solid var(--rule);
+  padding: 24px 0;
+}
+
+.headerWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.siteName {
+  font-size: 2.1em;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  color: var(--heading);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.siteName:hover {
+  text-decoration: none;
+}
+
+.tagline {
+  font-size: 0.8em;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.navGroup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.navLink {
+  font-size: 0.94em;
+  color: var(--ink-soft);
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+
+.navLink:hover {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.navLinkActive {
+  color: var(--heading);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+/* ---------- main ---------- */
+
+.main {
+  flex: 1;
+  padding: 44px 0;
+}
+
+.title {
+  font-size: 1.5em;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  color: var(--heading);
+  margin: 0 0 8px;
+}
+
+.intro {
+  font-size: 0.87em;
+  color: var(--ink-soft);
+  margin: 0 0 24px;
+}
+
+.download {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.87em;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.download:hover {
+  background: var(--accent);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.downloadArrow {
+  display: block;
+  line-height: 1;
+}
+
+/* [cv] Reduced motion, handled here rather than by branching on
+   useReducedMotion() during render. That hook returns null on the server and a
+   boolean on the client, so branching on it changes the inline style between
+   the two and React throws a hydration mismatch. An !important declaration
+   beats framer-motion's inline transform without touching the markup, so the
+   server and client output stay identical. */
+@media (prefers-reduced-motion: reduce) {
+  /* Target the local class the card already carries (s.scrollCard). A bare
+     :global(.cs-card) is rejected here -- Next.js requires every selector in a
+     module to contain at least one local class, so a global-only rule must
+     live in globals.css. Targeting the module class is equivalent here and
+     keeps the rule beside the rest of the CV styles. */
+  .scrollCard {
+    transform: none !important;
+  }
+
+  /* hashed with the module, so it matches the element carrying s.reveal */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* The document now lives inside the 3D frame, so its box is the frame's inner
+   panel -- no border of its own, the frame supplies that. */
+.embedInFrame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: var(--bg);
+}
+
+/* [cv] The vendor's card is max-w-5xl (1024px) with dark #222222 panel and
+   #6C6C6C border. Two changes for this page:
+   - widened, because a 1024px card would squeeze the PDF back down to a scale
+     smaller than the plain full-width embed it replaced
+   - padding reduced, for the same reason */
+.scrollFrame {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* [cv] The document is the point of this page, so the frame is sized to fill the
+   available width instead of the component's default max-w-5xl (1024px).
+
+   The cap has to leave room for the two things that push the PAINTED width past
+   the layout width, and both scale with the card:
+
+     - scale(1.05) at progress 0, from the component's own desktop range
+     - the 1000px perspective, which magnifies whatever is nearer the viewer
+
+   Measured painted-vs-layout blow-up at progress 0 is 1.23x (1248px laid out,
+   1537px painted). Two thirds of that is the component's own scale(1.05) and the
+   rest is perspective magnification, so the reserve has to cover ~1.23x minus the
+   5rem of runway padding a side, not just the padding.
+
+   The 18rem reserve is that arithmetic, and it is the value that measures clean
+   at every width tested:
+
+     1280x800  -> layout  904px, painted 1110px, 85px slack a side
+     1399x900  -> layout 1023px, painted 1257px, 71px slack a side
+     1920x1080 -> the 78rem ceiling wins, 1160px laid out, 95px slack a side
+
+   The 18rem reserve is desktop-only, and has to be: the component's mobile scale
+   range is 0.7 -> 0.9 (the card only ever SHRINKS below its layout width) while
+   desktop is 1.05 -> 1, so only desktop has to pay for projection headroom. One
+   18rem reserve for both was a measured bug -- on a 390px phone that leaves
+   390 - 288 = 102px and the card collapses to a 78px sliver. Hence the md query
+   below, which keeps the runway's own mobile padding (p-2, 1rem a side).
+
+   An earlier revision used min(100%, 1400px) and clipped at every width, because
+   globals.css sets `html { overflow-x: hidden }` -- the overflow was cut, not
+   scrolled, so the frame's border was sliced off. Do not raise the 78rem ceiling
+   or shrink the 18rem reserve without re-measuring painted width at progress 0. */
+.scrollCard {
+  max-width: calc(100vw - 2rem);
+}
+
+@media (min-width: 768px) {
+  .scrollCard {
+    max-width: min(78rem, calc(100vw - 18rem));
+  }
+}
+
+.embedFallback {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  font-size: 0.87em;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+/* ---------- footer ---------- */
+
+.footer {
+  border-top: 1px solid var(--rule);
+  padding: 24px 0 44px;
+  font-size: 0.8em;
+  color: var(--muted);
+}
+
+.page a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (max-width: 560px) {
+  .embed {
+    height: 68vh;
+  }
+
+  .siteName {
+    font-size: 1.7em;
+  }
+}
+
+.reveal {
+  will-change: transform, opacity;
+}

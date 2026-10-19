@@ -2,258 +2,449 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  /* Base colors */
-  --token-black: #000000;
-  --token-white: #ffffff;
-  --token-gray-mid: #ababab;
-  --token-gray-light: #e0e0e0;
-  --token-cream: #EDEAE4;
+@layer base {
+  :root {
+    --bg-dark: #050505;
+    --surface-01: rgba(255, 255, 255, 0.05);
+    --surface-02: #151515;
+    --surface-03: rgba(21, 21, 21, 0.8);
+    --surface-04: rgba(255, 255, 255, 0.07);
+    --surface-pill: rgba(21, 21, 21, 0.8);
+    --cta-01: rgba(255, 255, 255, 0.1);
+    --cta-02: #ffffff;
+    --text-on-solid: #030303;
+    --text-dim-50: rgba(255, 255, 255, 0.5);
+    --text-dim-60: rgba(255, 255, 255, 0.6);
+    --text-mute-80: rgba(255, 255, 255, 0.8);
 
-  /* Brand accents */
-  --token-orange: #fe3c01;
-  --token-orange-alt: #ff6200;
-  --token-yellow: #ffe815;
-  --token-blue: #0b1dff;
-  --token-pink: #ff75f6;
-  --token-magenta: #ff30b3;
-  --token-green: #45ff08;
-  --token-lime: #8bc200;
-  --token-red: #e3091d;
-  --token-near-white: #fafafa;
+    --bg-light: #e6e6e6;
+    --surface-card-light: #ffffff;
+    --surface-icon-light: #e6e6e6;
+    --text-on-light: #000000;
+    --text-on-light-60: rgba(0, 0, 0, 0.6);
+    --text-on-light-80: rgba(0, 0, 0, 0.8);
+    --text-near-black: #030303;
 
-  /* Selection */
-  --selection-bg: var(--token-orange);
-  --selection-color: var(--token-black);
+    --red-midu-mask: radial-gradient(
+      56% 156% at 47.1% 1.9%,
+      rgba(255, 255, 255, 0) 0%,
+      rgb(217, 182, 182) 100%
+    );
+    --red-midu-linear: linear-gradient(
+      rgba(143, 143, 143, 0) 0%,
+      rgba(176, 125, 125, 0.33) 100%
+    );
+    --red-footer: linear-gradient(
+      rgba(255, 3, 0, 0) 0%,
+      rgba(255, 0, 34, 0.68) 60%,
+      rgb(255, 125, 78) 85%
+    );
 
-  /* Fonts */
-  --font-display: "Outfit", "Arial", sans-serif;
-  --font-body: "Inter", "Arial", sans-serif;
-  --font-serif: "EB Garamond", "Times New Roman", serif;
-}
+    --fs-display-xl: clamp(40px, 8.008vw, 115.3px);
+    --fs-display-l: clamp(40px, 7.817vw, 112.6px);
+    --fs-display-m: clamp(32px, 6.196vw, 89.2px);
+    --fs-card-title: clamp(22px, 3.051vw, 43.9px);
+    --fs-card-title-s5: clamp(21px, calc(16.19px + 1.317vw), 35.1px);
+    --fs-work-title: clamp(20px, calc(15.11px + 1.229vw), 32.8px);
+    --fs-lead: clamp(18px, calc(12.95px + 1.054vw), 28.1px);
+    --fs-footer-tagline: clamp(18px, calc(12.95px + 1.054vw), 28.1px);
+    --fs-micro-title: clamp(16px, calc(10.79px + 0.878vw), 23.4px);
+    --fs-body-l: clamp(17px, calc(9.71px + 0.79vw), 21.1px);
+    --fs-body: clamp(17px, calc(9.71px + 0.79vw), 21.1px);
+    --fs-body-s: clamp(16px, calc(8.63px + 0.702vw), 18.7px);
+    --fs-chip: clamp(13px, calc(7.55px + 0.615vw), 16.4px);
+    --fs-caption: clamp(13px, calc(7.55px + 0.615vw), 16.4px);
+    --fs-micro: clamp(11px, calc(6.47px + 0.527vw), 14.1px);
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+    --ls-display-xl: -0.3203vw;
+    --ls-display-l: -0.3127vw;
+    --ls-display-m: -0.2479vw;
+    --ls-card-title: -0.061vw;
+    --ls-card-title-s5: calc(-0.647px - 0.0527vw);
+    --ls-work-title: calc(-0.302px - 0.0246vw);
+    --ls-lead: calc(-0.518px - 0.0421vw);
+    --ls-footer-tagline: calc(-0.388px - 0.0316vw);
+    --ls-body-l: calc(-0.388px - 0.0316vw);
+    --ls-body: calc(-0.291px - 0.0237vw);
+    --ls-body-s: calc(-0.259px - 0.0211vw);
+    --ls-chip: calc(-0.227px - 0.0184vw);
+    --ls-caption: calc(-0.151px - 0.0123vw);
+    --ls-faq-q: calc(-0.194px - 0.0158vw);
+    --ls-work-cat: calc(-0.173px - 0.014vw);
 
-::selection {
-  background-color: var(--selection-bg);
-  color: var(--selection-color);
-}
+    --gutter-nav: max(14px, 1.907vw);
+    --gutter-a: max(20px, 3.813vw);
+    --gutter-b: max(24px, 7.15vw);
+    --gutter-c: max(24px, 12.583vw);
+    --grid-gap-tight: max(14px, 1.907vw);
+    --grid-gap-wide: max(20px, 3.813vw);
+    --col-work: 45.281vw;
+    --col-narrow: 41.945vw;
+    --col-service: 35.558vw;
+    --pad-card: max(20px, 3.813vw);
+    --pad-service-y: max(24px, 4.29vw);
+    --pad-faq-y: max(16px, 2.288vw);
+    --pad-faq-x: max(16px, 2.669vw);
+    --pad-pill-x: max(12px, 1.716vw);
+    --pad-chip-x: max(9px, 1.144vw);
+    --pad-menu-x: max(12px, 1.525vw);
+    --section-pad-y: max(44px, 7.626vw);
+    --nav-h: max(56px, 7.626vw);
+    --nav-head-h: max(36px, 4.29vw);
+    --nav-y: max(14px, 2.383vw);
+    --menu-pill-w: max(72px, 9.056vw);
+    --menu-pill-h: max(44px, 4.29vw);
+    --cta-process-w: max(160px, 18.303vw);
+    --cta-process-h: max(44px, 4.576vw);
+    --cta-contact-w: max(140px, 14.395vw);
+    --cta-contact-h: max(44px, 4.576vw);
+    --arrow-btn: max(44px, 3.813vw);
+    --faq-item-h: 9.247vw;
+    --hero-h1-w: 34.128vw;
+    --process-img-w: 83.127vw;
+    --process-img-h: 55.005vw;
+    --work-img-h: 78.456vw;
+    --work-img-offset: -14.299vw;
+    --scrim-h: 13.346vw;
+    --tile: max(56px, 7.626vw);
+    --tile-img: max(40px, 5.72vw);
+    --marquee-w: 92.374vw;
 
-::-moz-selection {
-  background-color: var(--selection-bg);
-  color: var(--selection-color);
-}
-
-html {
-  background-color: var(--token-cream);
-  color: var(--token-black);
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-}
-
-body {
-  font-family: var(--font-body);
-  color: var(--token-black);
-  overflow-x: hidden;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Lenis smooth scrolling integration */
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-smooth iframe {
-  pointer-events: none;
-}
-
-/* Typography styles */
-.font-display {
-  font-family: var(--font-display);
-}
-
-.font-body {
-  font-family: var(--font-body);
-}
-
-.font-serif-italic {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 600;
-}
-
-.display-hero {
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: clamp(64px, 12vw, 175px);
-  line-height: 0.88;
-  letter-spacing: -0.05em;
-  text-transform: lowercase;
-}
-
-.heading-section {
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: clamp(42px, 8vw, 110px);
-  line-height: 0.9;
-  letter-spacing: -0.04em;
-}
-
-/* Hard Cut Zones */
-.zone-cream {
-  background-color: var(--token-cream);
-  color: var(--token-black);
-}
-
-.zone-white {
-  background-color: var(--token-white);
-  color: var(--token-black);
-}
-
-.zone-orange {
-  background-color: var(--token-orange);
-  color: var(--token-black);
-}
-
-.zone-black {
-  background-color: var(--token-black);
-  color: var(--token-white);
-}
-
-/* 4-Corner Navigation */
-.corner-nav {
-  position: fixed;
-  z-index: 9999;
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 19px;
-  letter-spacing: -0.02em;
-  mix-blend-mode: difference;
-  color: #ffffff;
-  pointer-events: auto;
-  text-decoration: none;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
-  line-height: 1;
-  padding: 6px;
-}
-
-.corner-nav:hover {
-  transform: scale(1.08);
-  opacity: 0.85;
-}
-
-.corner-top-left {
-  top: 24px;
-  left: 32px;
-}
-
-.corner-top-right {
-  top: 24px;
-  right: 32px;
-}
-
-.corner-bottom-left {
-  bottom: 24px;
-  left: 32px;
-}
-
-.corner-bottom-right {
-  bottom: 24px;
-  right: 32px;
-}
-
-/* Marquee Animation */
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
+    --r-xs: 1px;
+    --r-menu: max(14px, 1.562vw);
+    --r-chip: max(16px, 1.787vw);
+    --r-tile: max(18px, 2.011vw);
+    --r-pill: max(20px, 2.236vw);
+    --r-card: max(24px, 2.679vw);
+    --r-card-lg: max(32px, 3.575vw);
+    --r-service: max(36px, 4.022vw);
   }
+
+  html {
+    background-color: var(--bg-dark);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-dark);
+    color: #ffffff;
+    font-family: var(--font-switzer), sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: rgba(255, 255, 255, 0.85);
+    color: var(--text-on-solid);
+  }
+}
+
+@layer components {
+  .t-display-xl {
+    font-size: var(--fs-display-xl);
+    letter-spacing: var(--ls-display-xl);
+    line-height: 1;
+    font-weight: 500;
+  }
+
+  .t-display-l {
+    font-size: var(--fs-display-l);
+    letter-spacing: var(--ls-display-l);
+    line-height: 1;
+    font-weight: 500;
+  }
+
+  .t-display-m {
+    font-size: var(--fs-display-m);
+    letter-spacing: var(--ls-display-m);
+    line-height: 1;
+    font-weight: 500;
+  }
+
+  .t-card-title {
+    font-size: var(--fs-card-title);
+    letter-spacing: var(--ls-card-title);
+    line-height: 1.1;
+    font-weight: 500;
+  }
+
+  .t-card-title-s5 {
+    font-size: var(--fs-card-title-s5);
+    letter-spacing: var(--ls-card-title-s5);
+    line-height: 1.1;
+    font-weight: 600;
+  }
+
+  .t-work-title {
+    font-size: var(--fs-work-title);
+    letter-spacing: var(--ls-work-title);
+    line-height: 1.1;
+    font-weight: 500;
+  }
+
+  .t-lead {
+    font-size: var(--fs-lead);
+    letter-spacing: var(--ls-lead);
+    line-height: 1.3;
+    font-weight: 500;
+  }
+
+  .t-footer-tagline {
+    font-size: var(--fs-footer-tagline);
+    letter-spacing: var(--ls-footer-tagline);
+    line-height: 1.14;
+    font-weight: 500;
+  }
+
+  .t-body-l {
+    font-size: var(--fs-body-l);
+    letter-spacing: var(--ls-body-l);
+    line-height: 1.3;
+    font-weight: 500;
+  }
+
+  .t-body {
+    font-size: var(--fs-body);
+    letter-spacing: var(--ls-body);
+    line-height: 1.2;
+    font-weight: 400;
+  }
+
+  .t-body-s {
+    font-size: var(--fs-body-s);
+    letter-spacing: var(--ls-body-s);
+    line-height: 1.3;
+    font-weight: 400;
+  }
+
+  .t-chip {
+    font-size: var(--fs-chip);
+    letter-spacing: var(--ls-chip);
+    line-height: 1.1;
+    font-weight: 500;
+  }
+
+  .t-caption {
+    font-size: var(--fs-caption);
+    letter-spacing: var(--ls-caption);
+    line-height: 1.1;
+    font-weight: 400;
+  }
+
+  .t-micro {
+    font-size: var(--fs-micro);
+    letter-spacing: normal;
+    line-height: 1.08;
+    font-weight: 400;
+  }
+
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 9%,
+      #000 91%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 9%,
+      #000 91%,
+      transparent 100%
+    );
+  }
+
+  .glass-chip {
+    background: rgba(0, 0, 0, 0.3);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+  }
+
+  .work-scrim {
+    background: linear-gradient(
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+  }
+
+  .wordmark-kinetic {
+    background-image: var(--red-midu-mask), var(--red-midu-linear);
+    background-color: #050505;
+  }
+}
+
+@keyframes rb-cursor-blink {
+  0%,
   100% {
-    transform: translateX(-50%);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
   }
 }
 
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 25s linear infinite;
+@keyframes rb-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, calc(var(--rb-drift-dist) * -1), 0);
+  }
+}
+
+@keyframes lb-in {
+  from {
+    opacity: 0;
+    transform: scale(0.965) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* [stack-spread] the vendor pairs an inline px border-radius with a
+   `max-md:rounded-[4vw]` utility, but an inline style always outranks a
+   utility class, so the mobile radius never actually applied */
+@media (max-width: 767px) {
+  .ss-card-face {
+    border-radius: 4vw !important;
+  }
+}
+
+/* [contact] the sparkle does exactly ONE rotation on hover, then returns to
+   place. The transition lives only on the hover rule on purpose: transitioning
+   the un-hover path would replay the spin backwards, and since 360deg is
+   pixel-identical to 0deg, snapping back instantly is invisible. */
+.contact-spark {
+  transform: rotate(0deg);
+  transition: none;
+}
+
+a:hover .contact-spark,
+a:focus-visible .contact-spark {
+  transform: rotate(360deg);
+  transition: transform 620ms cubic-bezier(0.2, 0.8, 0.25, 1);
+}
+
+/* [contact] the pill itself: lift, brighten, and cast the red glow the inline
+   box-shadow placeholder (rgba(255,43,43,0)) was reserved for. Only the shadow
+   animates on the un-hover path -- transitioning the transform back would make
+   the lift itself lag, and a pill that sinks slowly reads as lag, not as
+   polish. `--cta-glow` stays 0 at rest so the resting state is exactly what it
+   was before this rule existed. */
+.t-cta-contact {
+  transform: translate3d(0, 0, 0);
+  box-shadow: 0 0 20px 5px rgba(255, 43, 43, var(--cta-glow, 0));
+  transition:
+    transform 260ms cubic-bezier(0.2, 0.8, 0.25, 1),
+    box-shadow 260ms cubic-bezier(0.2, 0.8, 0.25, 1),
+    background-color 260ms cubic-bezier(0.2, 0.8, 0.25, 1);
   will-change: transform;
 }
 
-.marquee-track:hover {
-  animation-play-state: paused;
+.t-cta-contact:hover,
+.t-cta-contact:focus-visible {
+  --cta-glow: 0.34;
+  transform: translate3d(0, -2px, 0);
 }
 
-/* Play button pulse loop */
-@keyframes pulse-play {
-  0%, 100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(254, 60, 1, 0.4);
-  }
-  50% {
-    transform: scale(1.08);
-    box-shadow: 0 0 0 16px rgba(254, 60, 1, 0);
-  }
+/* Keyboard focus must not depend on hover, but it should look identical. The
+   ring is already there from focus-visible:outline; this just matches the lift
+   so tabbing and hovering do not diverge. */
+.t-cta-contact:active {
+  transform: translate3d(0, 0, 0) scale(0.98);
 }
 
-.pulse-play-button {
-  animation: pulse-play 2s infinite ease-in-out;
+/* [light-zone] logo marquee — bare marks, no tile.
+   The drop-shadow is not decoration: without it the light-brand logos vanish on
+   the #e6e6e6 panel. Measured luma gap against that background:
+     JavaScript #F7DF1E -> 16   Python #FFC331 -> 34   Notion #fff -> 25
+   i.e. a yellow-on-grey square at 16/255 is effectively invisible. A 0.35-alpha
+   shadow hugs the glyph instead of drawing a box, so it reads as an edge rather
+   than a badge. Raise --logo-edge to 0 to switch it off. */
+.logo-mark {
+  display: block;
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 1px rgba(0, 0, 0, var(--logo-edge, 0.35)));
 }
 
-/* Accessibility: Prefers-reduced-motion */
+/* [stream-text] Streaming paragraph reveal.
+   Words rest VISIBLE so the copy is readable if JS never runs or the observer
+   never fires; useStreamText adds .is-armed in a layout effect (before paint)
+   to hide them, then reveals word by word. That ordering is also what avoids a
+   frame where the paragraph flashes fully rendered and then disappears. */
+:root {
+  --stream-gap: 60ms;
+  --stream-fade: 350ms;
+  --stream-blur: 1px;
+  --stream-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.t-stream-w {
+  opacity: 1;
+  filter: none;
+  transition:
+    opacity var(--stream-fade) var(--stream-ease),
+    filter var(--stream-fade) var(--stream-ease);
+}
+
+.t-stream.is-armed .t-stream-w {
+  opacity: 0;
+  filter: blur(var(--stream-blur));
+}
+
+/* Must out-specify the .is-armed rule above: that selector carries THREE
+   classes (.t-stream .is-armed .t-stream-w) against this one's two, so a plain
+   .t-stream-w.is-in would lose on specificity and stay invisible even after
+   being revealed. */
+.t-stream.is-armed .t-stream-w.is-in,
+.t-stream-w.is-in {
+  opacity: 1;
+  filter: blur(0);
+}
+
+/* [cert-lightbox] native <dialog> pops open with no transition of its own, so
+   the panel gets a keyframe on [open] instead of a class toggle */
+.lb-root[open] .lb-panel {
+  animation: lb-in 260ms cubic-bezier(0.2, 0.8, 0.25, 1) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
+  html {
+    scroll-behavior: auto;
   }
-  .marquee-track {
-    animation: none !important;
-  }
-  .pulse-play-button {
-    animation: none !important;
-  }
-}
 
-@media (max-width: 900px) {
-  .corner-nav {
-    font-size: 16px;
+  .rb-drift,
+  [style*="rb-drift"] {
+    animation: none !important;
   }
-  .corner-top-left {
-    top: 16px;
-    left: 20px;
+
+  .lb-root[open] .lb-panel {
+    animation: none !important;
   }
-  .corner-top-right {
-    top: 16px;
-    right: 20px;
+
+  a:hover .contact-spark,
+  a:focus-visible .contact-spark {
+    transform: none;
+    transition: none;
   }
-  .corner-bottom-left {
-    bottom: 16px;
-    left: 20px;
+
+  .t-cta-contact,
+  .t-cta-contact:hover,
+  .t-cta-contact:focus-visible,
+  .t-cta-contact:active {
+    transform: none !important;
+    transition: none !important;
   }
-  .corner-bottom-right {
-    bottom: 16px;
-    right: 20px;
+
+  .t-stream-w {
+    transition: none !important;
+    filter: none !important;
+    opacity: 1 !important;
   }
 }

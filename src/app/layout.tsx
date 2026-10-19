@@ -1,60 +1,48 @@
-import type { Metadata } from "next";
-import { Outfit, Inter, EB_Garamond } from "next/font/google";
-import { LenisProvider } from "@/components/LenisProvider";
+import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
+import SmoothScroll from "@/providers/SmoothScroll";
+import ClickSpark from "@/components/ui/clickspark";
 
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-display",
+const switzer = localFont({
+  src: [
+    { path: "./fonts/Switzer-Regular.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/Switzer-Medium.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/Switzer-Semibold.woff2", weight: "600", style: "normal" },
+  ],
+  variable: "--font-switzer",
   display: "swap",
+  fallback: ["sans-serif"],
+  adjustFontFallback: false,
 });
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-body",
-  display: "swap",
-});
-
-const ebGaramond = EB_Garamond({
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--font-serif",
-  display: "swap",
-});
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1.0,
+  themeColor: "#050505",
+};
 
 export const metadata: Metadata = {
-  title: "YanXin Zhang — Portfolio",
+  title: "Sandro — Design & Build",
   description:
-    "Interactive Design & Art Direction portfolio of YanXin Zhang. Building high-fidelity interactive software, bold brand identities, and sensory web experiences.",
-  keywords: [
-    "YanXin Zhang",
-    "Art Direction",
-    "Creative Development",
-    "Interactive Design",
-    "Design Systems",
-    "WebGL",
-  ],
-  authors: [{ name: "YanXin Zhang" }],
+    "Independent designer and developer building precise digital products, brand systems and editorial web experiences.",
+  authors: [{ name: "Sandro" }],
   openGraph: {
-    title: "YanXin Zhang — Portfolio",
+    title: "Sandro — Design & Build",
     description:
-      "Interactive Design & Art Direction portfolio of YanXin Zhang.",
+      "Independent designer and developer building precise digital products, brand systems and editorial web experiences.",
     type: "website",
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${outfit.variable} ${inter.variable} ${ebGaramond.variable}`}
-    >
-      <body className="antialiased selection:bg-[var(--token-orange)] selection:text-[var(--token-black)]">
-        <LenisProvider>{children}</LenisProvider>
+    <html lang="en" className={switzer.variable}>
+      <body className="bg-bg-dark text-white antialiased">
+        <SmoothScroll>{children}</SmoothScroll>
+        <ClickSpark />
       </body>
     </html>
   );
